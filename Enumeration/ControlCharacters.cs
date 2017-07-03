@@ -1,0 +1,39 @@
+﻿namespace Helper.Enumeration
+{
+    public enum ControlCharacters
+    {
+        Null = 0,
+        StartOfHeader,
+        StartOfText,
+        EndOfText,
+        EndOfTransmission,
+        Enquiry,
+        Acknowledgment,
+        Bell,
+        Backspace,
+        HorizontalTab,
+        LineFeed,
+        VerticalTab,
+        FormFeed,
+        CarriageReturn,
+        ShiftOut,
+        ShiftIn,
+        DataLinkEscape,
+        DeviceControl1,
+        DeviceControl2,
+        DeviceControl3,
+        DeviceControl4,
+        NegativeAcknowledgement,
+        SynchronousIdle,
+        EndOfTransmissionBlock,
+        Cancel,
+        EndOfMedium,
+        Substitute,
+        Escape,
+        FileSeparator,
+        GroupSeparator,
+        RecordSeparator,
+        UnitSeparator,
+        Space
+    }
+}
