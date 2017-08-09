@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Net.Mail;
-using Helper.Validation;
+using Helper.Extensions;
 using Helper.Enumeration;
+using Helper.Validation;
 
 namespace Helper
 {
@@ -76,7 +77,7 @@ namespace Helper
             get { return ReturnValue(_prefix); }
         }
 
-        public string FullName => ReturnValue($"{_firstName}{(string.IsNullOrEmpty(_firstName) ? string.Empty : " ") + _lastName}");
+        public string FullName => $"{_firstName}{(string.IsNullOrEmpty(_firstName) ? string.Empty : " ") + _lastName}".safeTrim();
 
         public string FirstName
         {
@@ -135,19 +136,17 @@ namespace Helper
 
         public bool InheritAddress { get; private set; }
 
-        public string WorkPhone => ReturnValue(ValidateData.PhoneNumber(_workPhone).ProcessedValue);
+        public string WorkPhone => ValidateData.PhoneNumber(_workPhone).ProcessedValue;
 
-        public string Extension => ReturnValue(_ext);
+        public string Extension => _ext.safeTrim();
 
-        public string Fax => ReturnValue(ValidateData.PhoneNumber(_fax).ProcessedValue);
+        public string Fax => ValidateData.PhoneNumber(_fax).ProcessedValue;
 
-        public string CellPhone => ReturnValue(ValidateData.PhoneNumber(_cellPhone).ProcessedValue);
+        public string CellPhone => ValidateData.PhoneNumber(_cellPhone).ProcessedValue;
 
-        public string HomePhone => ReturnValue(ValidateData.PhoneNumber(_homePhone).ProcessedValue);
+        public string HomePhone => ValidateData.PhoneNumber(_homePhone).ProcessedValue;
 
-        public string Gender => ReturnValue(_gender);
-
-        private static string ReturnValue(string origVal) => !string.IsNullOrEmpty(origVal) ? origVal.Trim() : string.Empty;
+        public string Gender => _gender.safeTrim();
 
         public string GetFormattedWorkPhone(bool includeExt)
         {
